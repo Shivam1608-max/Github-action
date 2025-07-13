@@ -1,0 +1,25 @@
+name: hello-world-linux
+
+on:
+  # 1️⃣ Push to the main branch
+  push:
+    branches: [ main ]        # adjust if your default branch is different
+
+  # 2️⃣ Pull‑request activity
+  pull_request:
+    types: [opened, synchronize, reopened]  # typical PR events
+
+  # 3️⃣ Manual trigger from the UI (or API)
+  workflow_dispatch:
+
+jobs:
+  say-hello:
+    # Run on the latest Ubuntu runner (Linux)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Print hello message
+        run: echo "Hello World 👋  – triggered by ${{ github.event_name }}"
